@@ -38,7 +38,8 @@ Edit `script.js` to:
 ✓ Chrome | ✓ Firefox | ✓ Safari | ✓ Edge  
 
 ## Screenshot  
-![Simple Countdown Timer](image.png)
+![Simple Countdown T![Screenshot 2025-05-24 003151](https://github.com/user-attachments/assets/1b3684f2-07dd-4117-b433-edf84bd74056)
+imer]()
 
 ## License  
 MIT License
