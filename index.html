@@ -2,22 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown Timer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>⏳ Countdown Timer</h1>
-        <div class="timer-setup">
-            <input type="number" id="minutes" placeholder="Minutes" min="0">
-            <input type="number" id="seconds" placeholder="Seconds" min="0" max="59">
-            <button onclick="startTimer()">Start</button>
-        </div>
-        <div class="countdown-display" id="countdown">00:00</div>
-    </div>
+    <main class="timer-wrapper">
+        <section class="card">
+            <header>
+                <h2>⏳ Simple Countdown</h2>
+                <p>Set your time and press start</p>
+            </header>
+
+            <form class="time-inputs" onsubmit="event.preventDefault(); startTimer();">
+                <div class="input-group">
+                    <label for="minutes">Minutes</label>
+                    <input type="number" id="minutes" placeholder="0" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="seconds">Seconds</label>
+                    <input type="number" id="seconds" placeholder="0" min="0" max="59">
+                </div>
+                <div class="button-group">
+                    <button type="submit">Start</button>
+                    <button type="button" onclick="stopTimer()" class="stop-button">Stop</button>
+                    <button type="button" onclick="resetTimer()" class="reset-button">Reset</button>
+                </div>
+            </form>
+
+            <div class="timer-display" id="countdown">00:00</div>
+        </section>
+    </main>
 
     <script>
         let countdown;
+
         function startTimer() {
             clearInterval(countdown);
             const minutes = parseInt(document.getElementById('minutes').value) || 0;
@@ -31,11 +50,22 @@
                 totalSeconds--;
                 if (totalSeconds < 0) {
                     clearInterval(countdown);
-                    display.textContent = "Time's up!";
+                    display.textContent = "⏰ Time's up!";
                     return;
                 }
                 updateDisplay(totalSeconds);
             }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(countdown);
+        }
+
+        function resetTimer() {
+            clearInterval(countdown);
+            document.getElementById('minutes').value = '';
+            document.getElementById('seconds').value = '';
+            document.getElementById('countdown').textContent = '00:00';
         }
 
         function updateDisplay(secondsLeft) {
